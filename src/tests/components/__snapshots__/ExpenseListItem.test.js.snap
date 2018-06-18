@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should reder ExpenseListItem with expense 1`] = `
+<div
+  className="expense__list-item"
+>
+  <h3>
+    <Link
+      replace={false}
+      to="/edit/1"
+    >
+      Gum
+    </Link>
+  </h3>
+  <p>
+    £
+    195
+     - 
+    0
+  </p>
+</div>
+`;
