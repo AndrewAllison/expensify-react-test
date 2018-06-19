@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 import { ExpenseListFilters } from '../../components/ExpenseListFilters';
-import { altFilters, filters } from '../fixtures/filters';
-import moment from "moment";
+import { filters, altFilters } from '../fixtures/filters';
 
 let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, wrapper;
 
@@ -29,26 +29,36 @@ test('should render ExpenseListFilters correctly', () => {
 });
 
 test('should render ExpenseListFilters with alt data correctly', () => {
-  wrapper.setProps({ filters: altFilters });
+  wrapper.setProps({
+    filters: altFilters
+  });
   expect(wrapper).toMatchSnapshot();
 });
 
 test('should handle text change', () => {
   const value = 'rent';
-  wrapper.find('input').prop('onChange')({ target: { value } });
-  expect(setTextFilter).toHaveBeenCalledWith(value);
+  wrapper.find('input').simulate('change', {
+    target: { value }
+  });
+  expect(setTextFilter).toHaveBeenLastCalledWith(value);
 });
 
 test('should sort by date', () => {
   const value = 'date';
-  wrapper.setProps({ filters: altFilters });
-  wrapper.find('select').simulate('change', { target: { value } });
+  wrapper.setProps({
+    filters: altFilters
+  });
+  wrapper.find('select').simulate('change', {
+    target: { value }
+  });
   expect(sortByDate).toHaveBeenCalled();
 });
 
 test('should sort by amount', () => {
   const value = 'amount';
-  wrapper.find('select').simulate('change', { target: { value } });
+  wrapper.find('select').simulate('change', {
+    target: { value }
+  });
   expect(sortByAmount).toHaveBeenCalled();
 });
 
@@ -60,8 +70,8 @@ test('should handle date changes', () => {
   expect(setEndDate).toHaveBeenLastCalledWith(endDate);
 });
 
-test('should handle date focused changes', () => {
-  const calenderFoxcused = 'endDate';
-  wrapper.find('DateRangePicker').prop('onFocusChange')(calenderFoxcused);
-  expect(wrapper.stat('calenderocused')).toBe(calenderFoxcused);
+test('should handle date focus changes', () => {
+  const calendarFocused = 'endDate';
+  wrapper.find('DateRangePicker').prop('onFocusChange')(calendarFocused);
+  expect(wrapper.state('calendarFocused')).toBe(calendarFocused);
 });
