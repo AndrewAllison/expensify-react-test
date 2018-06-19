@@ -27,3 +27,6 @@ public/dist
 .DS_Store
 Thumbs.db
 
+# ENVS - We don't want these in source code
+.env.test
+.env.development
