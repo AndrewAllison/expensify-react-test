@@ -1,9 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-public/*.js
-public/*.css
-public/*.map
+public/dist
 
 # dependencies
 /node_modules
