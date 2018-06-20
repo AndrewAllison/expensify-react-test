@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 
 import AppRouter from './routers/AppRouter';
 
 import configureStore from './store/configureStore';
 
-import {addExpense} from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 import showVisible from './selectors/expenses';
 
 import 'normalize.css/normalize.css';
@@ -25,4 +25,8 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('App'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('App'));
+// Load up
+store.dispatch(startSetExpenses()).then(() => {
+  ReactDOM.render(jsx, document.getElementById('App'));
+});
